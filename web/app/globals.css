@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* VisionOS-style background and glassmorphism utilities */
+html, body {
+  min-height: 100%;
+}
+
+.bg-space {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(0, 255, 255, 0.15), transparent 60%),
+    radial-gradient(1000px 500px at -10% 20%, rgba(180, 255, 180, 0.16), transparent 60%),
+    radial-gradient(800px 600px at 60% 120%, rgba(255, 180, 255, 0.12), transparent 70%),
+    linear-gradient(180deg, #f7f7f8 0%, #eceef5 60%, #e7ebf3 100%);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.26);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-right-color: rgba(255, 255, 255, 0.25);
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.10),
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    0 0 0 1px rgba(255,255,255,0.08);
+}
+
+.neon {
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.12),
+    0 10px 30px rgba(0, 0, 0, 0.12),
+    0 0 24px rgba(0, 255, 255, 0.35),
+    0 0 56px rgba(120, 80, 255, 0.25);
+}
+
+.depth {
+  transform: translateZ(0);
+  will-change: transform, filter, box-shadow;
+}
+
+.hover-float {
+  transition: transform 300ms ease, box-shadow 300ms ease, filter 300ms ease;
+}
+.hover-float:hover {
+  transform: translateY(-4px);
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.12));
+}
+
+.accent-ring {
+  position: relative;
+}
+.accent-ring::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(120px 50px at 20% 10%, rgba(0, 255, 255, 0.35), transparent 60%),
+    radial-gradient(120px 50px at 80% 20%, rgba(120, 80, 255, 0.35), transparent 60%),
+    radial-gradient(200px 80px at 50% 120%, rgba(255, 150, 255, 0.25), transparent 70%);
+  mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  padding: 1px;
+  border-radius: inherit;
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-right-color: rgba(255, 255, 255, 0.35);
+  border-bottom-color: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(20px) saturate(130%);
+}
+
+.soft-scroll::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.soft-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.12);
+  border-radius: 8px;
+}
+.soft-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
